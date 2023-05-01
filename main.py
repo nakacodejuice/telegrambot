@@ -1,5 +1,14 @@
 
 import logging
+import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bottg.settings")
+
+import django
+django.setup()
+
+from django.core.management import call_command
+
+from tgbase.models import Request
 
 from telegram import __version__ as TG_VER
 
@@ -24,6 +33,10 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def addclient(lschet,id):
+
+    p = AccountLinkToId(Messanger='viber',requesttext = request.body.decode("utf-8"))
+    p.save()
 
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [
@@ -35,7 +48,7 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
 
     reply_markup = InlineKeyboardMarkup(keyboard)
-
+    addclient(28452,update.message.chat.id)
     await update.message.reply_text("Please choose:", reply_markup=reply_markup) 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
